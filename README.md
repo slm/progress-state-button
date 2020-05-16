@@ -3,27 +3,82 @@
 A customizable progress button
 
 
-![](./medias/failed.gif)
-
-![](./medias/success.gif)
+![](./medias/failed.gif) ![](./medias/success.gif)
 
 
 ## Installation
 
 https://pub.dev/packages/flutter_state_button
 
-This project is a starting point for a Flutter application.
+```
+progress-state-button: "^1.0.0"
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Icon
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+ProgressButton.icon(iconedButtons: {
+      ButtonState.idle:
+        IconedButton(
+            text: "Send",
+            icon: Icon(Icons.send,color: Colors.white),
+            color: Colors.deepPurple.shade500),
+      ButtonState.loading:
+        IconedButton(
+            text: "Loading",
+            color: Colors.deepPurple.shade700),
+      ButtonState.fail:
+        IconedButton(
+            text: "Failed",
+            icon: Icon(Icons.cancel,color: Colors.white),
+            color: Colors.red.shade300),
+      ButtonState.success:
+        IconedButton(
+            text: "Success",
+            icon: Icon(Icons.check_circle,color: Colors.white,),
+            color: Colors.green.shade400)
+    }, 
+    onPressed: onPressed,
+    state: ButtonState.idle);
+```
 
+### Custom Widgets
 
+```
+ProgressButton(
+      stateWidgets: {
+        ButtonState.idle: Text("Idle",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+        ButtonState.loading: Text("Loading",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+        ButtonState.fail: Text("Fail",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
+        ButtonState.success: Text("Success",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),)
+      },
+      stateColors: {
+        ButtonState.idle: Colors.grey.shade400,
+        ButtonState.loading: Colors.blue.shade300,
+        ButtonState.fail: Colors.red.shade300,
+        ButtonState.success: Colors.green.shade400,
+      },
+      onPressed: onPressed,
+      state: ButtonState.idle,
+    );
+```
+
+### Constructors
+
+`stateWidgets` - Widgets of states
+`stateColors` - Background color oof states
+`state = ButtonState.idle` - Current state of button
+`onPressed` - onPressed function same like RaisedButton
+`onAnimationEnd` - onAnimatedEnd function calls like that onAnimatedEnd(AnimationStatus animationStatus,ButtonState currentState).
+`minWidth = 200.0` - Loading state width
+`maxWidth = 400.0` - failed,success,idle states width
+`radius = 16.0` - Button radius
+`height = 53.0` - Button height
+`circularProgressIndicator` - CircularProgressIndicator widget, default is instating with current state color.
+`progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
+`padding = EdgeInsets.zero` - Padding of button
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

@@ -53,12 +53,13 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
       },
       onPressed: onPressedCustomButton,
       state: stateOnlyText,
+      padding: EdgeInsets.all(8.0),
     );
     return progressTextButton;
   }
 
   Widget buildTextWithIcon() {
-    return ProgressButton.iconed(iconedButtons: {
+    return ProgressButton.icon(iconedButtons: {
       ButtonState.idle:
           IconedButton(text: "Send", icon: Icon(Icons.send,color: Colors.white), color: Colors.deepPurple.shade500),
       ButtonState.loading:

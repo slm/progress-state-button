@@ -13,8 +13,9 @@ class ProgressButton extends StatefulWidget {
   final maxWidth;
   final radius;
   final height;
-  final CircularProgressIndicator circularProgressIndicator;
+  final ProgressIndicator progressIndicator;
   final MainAxisAlignment progressIndicatorAligment;
+  final EdgeInsets padding;
 
    ProgressButton({
     Key key,
@@ -27,8 +28,9 @@ class ProgressButton extends StatefulWidget {
     this.maxWidth = 400.0,
     this.radius = 16.0,
     this.height = 53.0,
-    this.circularProgressIndicator,
+    this.progressIndicator,
     this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
+    this.padding = EdgeInsets.zero,
   }) : 
       assert(
         stateWidgets != null && stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
@@ -45,7 +47,7 @@ class ProgressButton extends StatefulWidget {
     return _ProgressButtonState();
   }
 
-  factory ProgressButton.iconed({
+  factory ProgressButton.icon({
     @required Map<ButtonState, IconedButton> iconedButtons,
     Function onPressed,
     ButtonState state = ButtonState.idle,
@@ -56,6 +58,7 @@ class ProgressButton extends StatefulWidget {
     radius: 100.0,
     gap: 4.0,
     TextStyle textStyle,
+    CircularProgressIndicator progressIndicator,
   }) {
     assert(
         iconedButtons != null && iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
@@ -91,7 +94,8 @@ class ProgressButton extends StatefulWidget {
       minWidth: minWidth,
       radius: radius,
       height: height,
-      progressIndicatorAligment: MainAxisAlignment.center
+      progressIndicatorAligment: MainAxisAlignment.center,
+      progressIndicator: progressIndicator,
     );
   }
 }
@@ -102,7 +106,6 @@ class _ProgressButtonState extends State<ProgressButton>
   AnimationController colorAnimationController;
   Animation<Color> colorAnimation;
   double width;
-  double height;
   Duration animationDuration = Duration(milliseconds: 500);
   Widget progressIndicator;
  
@@ -111,10 +114,8 @@ class _ProgressButtonState extends State<ProgressButton>
     Color end = widget.stateColors[newState];
     if (newState == ButtonState.loading) {
       width = widget.minWidth;
-      height = widget.height;
     } else {
       width = widget.maxWidth;
-      height = widget.height;
     }
     colorAnimation = ColorTween(begin: begin, end: end).animate(CurvedAnimation(
       parent: colorAnimationController,
@@ -151,7 +152,7 @@ class _ProgressButtonState extends State<ProgressButton>
     super.didUpdateWidget(oldWidget);
     
     if(widget.state == ButtonState.loading){
-       progressIndicator = widget.circularProgressIndicator ?? CircularProgressIndicator(backgroundColor: widget.stateColors[widget.state] ,valueColor:AlwaysStoppedAnimation<Color>(Colors.white));
+       progressIndicator = widget.progressIndicator ?? CircularProgressIndicator(backgroundColor: widget.stateColors[widget.state] ,valueColor:AlwaysStoppedAnimation<Color>(Colors.white));
     }
 
     if (oldWidget.state != widget.state) {
@@ -185,10 +186,10 @@ class _ProgressButtonState extends State<ProgressButton>
       builder: (context, child) {
         return AnimatedContainer(
             width: width,
-            height: height,
+            height: widget.height,
             duration: animationDuration,
             child: RaisedButton(
-              padding: EdgeInsets.all(0.0),
+              padding: widget.padding,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(widget.radius),
                   side: BorderSide(color: Colors.transparent, width: 0)),
