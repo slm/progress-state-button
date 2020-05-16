@@ -3,7 +3,7 @@
 A customizable progress button for Flutter
 
 
-![](./medias/failed.gif) ![](./medias/success.gif)
+![](./medias/success.gif)
 
 
 ## Installation
@@ -18,7 +18,7 @@ progress-state-button: "^1.0.0"
 
 ### Icon 
 
-![](./medias/success.gif)
+![](./medias/failed.gif)
 ```
 ProgressButton.icon(iconedButtons: {
       ButtonState.idle:
@@ -89,7 +89,7 @@ padding = EdgeInsets.zero - Padding of button
 ```
 @required Map<ButtonState, IconedButton> iconedButtons` - State and IconedButton map
 double iconPadding: 4.0 - Padding of icon 
-TextStyle textStyle - TextStyle of all of states
+`TextStyle textStyle - TextStyle of all of states
 ```
 
 ## License
