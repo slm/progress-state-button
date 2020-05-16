@@ -71,25 +71,25 @@ ProgressButton(
 
 #### Default constructor of ProgressButton
 ```
-`stateWidgets` - Widgets of states
-`stateColors` - Background color oof states
-`state = ButtonState.idle` - Current state of button
-`onPressed` - onPressed function same like RaisedButton
-`onAnimationEnd` - onAnimatedEnd function calls like that onAnimatedEnd(AnimationStatus animationStatus,ButtonState currentState).
-`minWidth = 200.0` - Loading state width
-`maxWidth = 400.0` - failed,success,idle states width
-`radius = 16.0` - Button radius
-`height = 53.0` - Button height
-`circularProgressIndicator` - CircularProgressIndicator widget, default is instating with current state color.
-`progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
-`padding = EdgeInsets.zero` - Padding of button
+stateWidgets - Widgets of states
+stateColors - Background color oof states
+state = ButtonState.idle` - Current state of button
+onPressed - onPressed function same like RaisedButton
+onAnimationEnd - onAnimatedEnd function calls like that onAnimatedEnd(AnimationStatus animationStatus,ButtonState currentState).
+minWidth = 200.0 - Loading state width
+maxWidth = 400.0 - failed,success,idle states width
+radius = 16.0 - Button radius
+height = 53.0 - Button height
+circularProgressIndicator - CircularProgressIndicator widget, default is instating with current state color.
+progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
+padding = EdgeInsets.zero - Padding of button
 ```
 
 #### ProgressButton.icon() specific constructors
 ```
-`@required Map<ButtonState, IconedButton> iconedButtons` - State and IconedButton map
-`double iconPadding: 4.0` - Padding of icon 
-`TextStyle textStyle` - TextStyle of all of states
+@required Map<ButtonState, IconedButton> iconedButtons` - State and IconedButton map
+double iconPadding: 4.0 - Padding of icon 
+TextStyle textStyle - TextStyle of all of states
 ```
 
 ## License
