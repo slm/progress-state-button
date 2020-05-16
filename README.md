@@ -3,7 +3,7 @@
 A customizable progress button for Flutter
 
 
-![](./medias/success.gif)
+![](./media/success.gif)
 
 
 ## Installation
@@ -18,7 +18,7 @@ progress-state-button: "^1.0.0"
 
 ### Icon 
 
-![](./medias/failed.gif)
+![](./media/failed.gif)
 ```
 ProgressButton.icon(iconedButtons: {
       ButtonState.idle:
@@ -47,7 +47,7 @@ ProgressButton.icon(iconedButtons: {
 
 ### With Custom Widgets 
 
-![](./medias/custom.gif)
+![](./media/custom.gif)
 ```
 ProgressButton(
       stateWidgets: {

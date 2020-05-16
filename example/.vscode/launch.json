@@ -3,10 +3,10 @@
     "configurations": [
         
         {
-            "name": "Run Tests",
+            "name": "Run App",
             "request": "launch",
             "type": "dart",
-            "program" : "./test/",
+            "program" : "./lib/main.dart",
         }
     ]
 }
