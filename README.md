@@ -1,6 +1,6 @@
 # Progress State Button
 
-A customizable progress button
+A customizable progress button for Flutter
 
 
 ![](./medias/failed.gif) ![](./medias/success.gif)
@@ -16,8 +16,9 @@ progress-state-button: "^1.0.0"
 
 ## Usage
 
-### Icon ![](./medias/success.gif)
+### Icon 
 
+![](./medias/success.gif)
 ```
 ProgressButton.icon(iconedButtons: {
       ButtonState.idle:
@@ -44,8 +45,9 @@ ProgressButton.icon(iconedButtons: {
     state: ButtonState.idle);
 ```
 
-### With Custom Widgets ![](./medias/custom.gif)
+### With Custom Widgets 
 
+![](./medias/custom.gif)
 ```
 ProgressButton(
       stateWidgets: {
