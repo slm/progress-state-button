@@ -1,8 +1,16 @@
-# progress_button
+# Progress State Button
 
-A new Flutter project.
+A customizable progress button
 
-## Getting Started
+
+![](./medias/failed.gif)
+
+![](./medias/success.gif)
+
+
+## Installation
+
+https://pub.dev/packages/flutter_state_button
 
 This project is a starting point for a Flutter application.
 
@@ -14,3 +22,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
