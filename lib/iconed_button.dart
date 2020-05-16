@@ -13,8 +13,8 @@ class IconedButton {
   });
 }
 
-Widget buildChildWithIcon(IconedButton iconedButton,double gap,TextStyle textStyle) {
-  return buildChildWithIC(iconedButton.text,iconedButton.icon,gap,textStyle);
+Widget buildChildWithIcon(IconedButton iconedButton,double iconPadding,TextStyle textStyle) {
+  return buildChildWithIC(iconedButton.text,iconedButton.icon,iconPadding,textStyle);
 }
 
 Widget buildChildWithIC(String text, Icon icon, double gap,TextStyle textStyle) {

@@ -67,6 +67,8 @@ ProgressButton(
 
 ### Constructors
 
+Default constructor of ProgressButton
+
 `stateWidgets` - Widgets of states
 `stateColors` - Background color oof states
 `state = ButtonState.idle` - Current state of button
@@ -79,6 +81,12 @@ ProgressButton(
 `circularProgressIndicator` - CircularProgressIndicator widget, default is instating with current state color.
 `progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
 `padding = EdgeInsets.zero` - Padding of button
+
+ProgressButton.icon() specific constructors
+
+`@required Map<ButtonState, IconedButton> iconedButtons` - State and IconedButton map
+`double iconPadding: 4.0` - Padding of icon 
+`TextStyle textStyle` - TextStyle of all of states
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

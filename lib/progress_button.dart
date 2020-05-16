@@ -56,9 +56,11 @@ class ProgressButton extends StatefulWidget {
     minWidth: 58.0,
     height:53.0,
     radius: 100.0,
-    gap: 4.0,
+    double iconPadding: 4.0,
     TextStyle textStyle,
     CircularProgressIndicator progressIndicator,
+    MainAxisAlignment progressIndicatorAligment,
+    EdgeInsets padding = EdgeInsets.zero,
   }) {
     assert(
         iconedButtons != null && iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
@@ -70,11 +72,11 @@ class ProgressButton extends StatefulWidget {
     }
 
     Map<ButtonState, Widget> stateWidgets = {
-      ButtonState.idle: buildChildWithIcon(iconedButtons[ButtonState.idle],gap,textStyle),
+      ButtonState.idle: buildChildWithIcon(iconedButtons[ButtonState.idle],iconPadding,textStyle),
       ButtonState.loading: Column(),
-      ButtonState.fail: buildChildWithIcon(iconedButtons[ButtonState.fail],gap,textStyle),
+      ButtonState.fail: buildChildWithIcon(iconedButtons[ButtonState.fail],iconPadding,textStyle),
       ButtonState.success:
-          buildChildWithIcon(iconedButtons[ButtonState.success],gap,textStyle)
+          buildChildWithIcon(iconedButtons[ButtonState.success],iconPadding,textStyle)
     };
 
     Map<ButtonState, Color>  stateColors = {
