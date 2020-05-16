@@ -16,7 +16,7 @@ progress-state-button: "^1.0.0"
 
 ## Usage
 
-### Icon
+### Icon ![](./medias/success.gif)
 
 ```
 ProgressButton.icon(iconedButtons: {
@@ -44,7 +44,7 @@ ProgressButton.icon(iconedButtons: {
     state: ButtonState.idle);
 ```
 
-### Custom Widgets
+### With Custom Widgets ![](./medias/custom.gif)
 
 ```
 ProgressButton(
