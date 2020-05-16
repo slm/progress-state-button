@@ -1,4 +1,4 @@
-name: progress_state_button
+name: progress_state_button_example
 description: A customizable progress button for Flutter.
 version: 1.0.0
 authors: [
@@ -16,6 +16,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  progress_state_button:
+      path: ../
 
 flutter:
   uses-material-design: true
