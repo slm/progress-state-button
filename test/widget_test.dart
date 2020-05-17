@@ -69,11 +69,10 @@ void main() {
 
 }
 
+ class TestApp extends StatelessWidget {
 
-class TestApp extends StatelessWidget {
-
-  ButtonState currentState;
-  ButtonState nextState;
+  final ButtonState currentState;
+  final ButtonState nextState;
 
   TestApp({Key key, this.currentState,this.nextState}) : super(key: key);
 
@@ -92,8 +91,8 @@ class TestApp extends StatelessWidget {
 }
 
 class ProgressButtonHomePage extends StatefulWidget {
-  ButtonState currentState;
-  ButtonState nextState;
+  final ButtonState currentState;
+  final ButtonState nextState;
 
   ProgressButtonHomePage({Key key, this.currentState,this.nextState}) : super(key: key);
 
