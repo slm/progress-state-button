@@ -40,10 +40,22 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
   Widget buildCustomButton() {
     var progressTextButton = ProgressButton(
       stateWidgets: {
-        ButtonState.idle: Text("Idle",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
-        ButtonState.loading: Text("Loading",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
-        ButtonState.fail: Text("Fail",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
-        ButtonState.success: Text("Success",style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),)
+        ButtonState.idle: Text(
+          "Idle",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.loading: Text(
+          "Loading",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.fail: Text(
+          "Fail",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.success: Text(
+          "Success",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        )
       },
       stateColors: {
         ButtonState.idle: Colors.grey.shade400,
@@ -60,17 +72,24 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
 
   Widget buildTextWithIcon() {
     return ProgressButton.icon(iconedButtons: {
-      ButtonState.idle:
-          IconedButton(text: "Send", icon: Icon(Icons.send,color: Colors.white), color: Colors.deepPurple.shade500),
+      ButtonState.idle: IconedButton(
+          text: "Send",
+          icon: Icon(Icons.send, color: Colors.white),
+          color: Colors.deepPurple.shade500),
       ButtonState.loading:
           IconedButton(text: "Loading", color: Colors.deepPurple.shade700),
-      ButtonState.fail:
-          IconedButton(text: "Failed", icon: Icon(Icons.cancel,color: Colors.white), color: Colors.red.shade300),
-      ButtonState.success:
-          IconedButton(text: "Success", icon: Icon(Icons.check_circle,color: Colors.white,), color: Colors.green.shade400)
-    }, 
-    onPressed: onPressedIconWithText,
-    state: stateTextWithIcon);
+      ButtonState.fail: IconedButton(
+          text: "Failed",
+          icon: Icon(Icons.cancel, color: Colors.white),
+          color: Colors.red.shade300),
+      ButtonState.success: IconedButton(
+          text: "Success",
+          icon: Icon(
+            Icons.check_circle,
+            color: Colors.white,
+          ),
+          color: Colors.green.shade400)
+    }, onPressed: onPressedIconWithText, state: stateTextWithIcon);
   }
 
   @override
@@ -119,7 +138,9 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
         stateTextWithIcon = ButtonState.loading;
         Future.delayed(Duration(seconds: 1), () {
           setState(() {
-            stateTextWithIcon =  Random.secure().nextBool() ? ButtonState.success : ButtonState.fail;
+            stateTextWithIcon = Random.secure().nextBool()
+                ? ButtonState.success
+                : ButtonState.fail;
           });
         });
 

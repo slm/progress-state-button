@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class IconedButton {
-
   final String text;
   final Icon icon;
   final Color color;
@@ -13,22 +12,25 @@ class IconedButton {
   });
 }
 
-Widget buildChildWithIcon(IconedButton iconedButton,double iconPadding,TextStyle textStyle) {
-  return buildChildWithIC(iconedButton.text,iconedButton.icon,iconPadding,textStyle);
+Widget buildChildWithIcon(
+    IconedButton iconedButton, double iconPadding, TextStyle textStyle) {
+  return buildChildWithIC(
+      iconedButton.text, iconedButton.icon, iconPadding, textStyle);
 }
 
-Widget buildChildWithIC(String text, Icon icon, double gap,TextStyle textStyle) {
+Widget buildChildWithIC(
+    String text, Icon icon, double gap, TextStyle textStyle) {
   return Wrap(
     direction: Axis.horizontal,
     crossAxisAlignment: WrapCrossAlignment.center,
     children: <Widget>[
       icon,
       Padding(padding: EdgeInsets.all(gap)),
-      buildText(text,textStyle)
+      buildText(text, textStyle)
     ],
   );
 }
 
-Widget buildText(String text,TextStyle style) {
-  return Text(text,style: style);
+Widget buildText(String text, TextStyle style) {
+  return Text(text, style: style);
 }
