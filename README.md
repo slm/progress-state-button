@@ -6,6 +6,10 @@ A customizable progress button for Flutter
 ![](./media/success.gif)
 
 
+Test with [DartPad](https://dartpad.dev/embed-flutter.html?id=744bc09662686a31cd6fc300739a3e14&split=80&theme=dark)
+
+
+
 ## Installation
 
 https://pub.dev/packages/flutter_state_button
