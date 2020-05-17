@@ -32,18 +32,15 @@ class ProgressButton extends StatefulWidget {
     this.progressIndicator,
     this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
     this.padding = EdgeInsets.zero,
-  })
-      : assert(
-  stateWidgets != null &&
-      stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
-  'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState
-      .values.toSet().difference(stateWidgets.keys.toSet())}',
-  ),
+  })  : assert(
+          stateWidgets != null &&
+              stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
+          'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateWidgets.keys.toSet())}',
+        ),
         assert(
-        stateColors != null &&
-            stateColors.keys.toSet().containsAll(ButtonState.values.toSet()),
-        'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState
-            .values.toSet().difference(stateColors.keys.toSet())}',
+          stateColors != null &&
+              stateColors.keys.toSet().containsAll(ButtonState.values.toSet()),
+          'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateColors.keys.toSet())}',
         ),
         super(key: key);
 
@@ -68,10 +65,9 @@ class ProgressButton extends StatefulWidget {
     EdgeInsets padding = EdgeInsets.zero,
   }) {
     assert(
-    iconedButtons != null &&
-        iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
-    'Must be non-null widgets provided in map of stateWidgets. Missing keys => ${ButtonState
-        .values.toSet().difference(iconedButtons.keys.toSet())}',
+      iconedButtons != null &&
+          iconedButtons.keys.toSet().containsAll(ButtonState.values.toSet()),
+      'Must be non-null widgets provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(iconedButtons.keys.toSet())}',
     );
 
     if (textStyle == null) {
@@ -138,10 +134,9 @@ class _ProgressButtonState extends State<ProgressButton>
     colorAnimationController.forward();
   }
 
-  Color get backgroundColor =>
-      colorAnimation == null
-          ? widget.stateColors[widget.state]
-          : colorAnimation.value ?? widget.stateColors[widget.state];
+  Color get backgroundColor => colorAnimation == null
+      ? widget.stateColors[widget.state]
+      : colorAnimation.value ?? widget.stateColors[widget.state];
 
   @override
   void initState() {

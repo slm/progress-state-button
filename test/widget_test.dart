@@ -73,16 +73,9 @@ void main() {
   });
 }
 
-<<<<<<< HEAD
- class TestApp extends StatelessWidget {
-
+class TestApp extends StatelessWidget {
   final ButtonState currentState;
   final ButtonState nextState;
-=======
-class TestApp extends StatelessWidget {
-  ButtonState currentState;
-  ButtonState nextState;
->>>>>>> 9560764fa7f05b69c2307a3b2bdce8e524caf0e7
 
   TestApp({Key key, this.currentState, this.nextState}) : super(key: key);
 
