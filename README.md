@@ -91,9 +91,9 @@ padding = EdgeInsets.zero - Padding of button
 
 #### ProgressButton.icon() specific constructors
 ```
-@required Map<ButtonState, IconedButton> iconedButtons` - State and IconedButton map
+Map<ButtonState, IconedButton> iconedButtons- State and IconedButton map
 double iconPadding: 4.0 - Padding of icon 
-`TextStyle textStyle - TextStyle of all of states
+TextStyle textStyle - TextStyle of all of states
 ```
 
 ## License
