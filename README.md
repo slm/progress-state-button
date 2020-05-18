@@ -12,7 +12,7 @@ Test with [DartPad](https://dartpad.dev/embed-flutter.html?id=744bc09662686a31cd
 
 ## Installation
 
-https://pub.dev/packages/flutter_state_button
+https://pub.dev/packages/progress_state_button
 
 ```
 progress-state-button: "^1.0.0"
