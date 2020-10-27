@@ -15,7 +15,7 @@ Test with [DartPad](https://dartpad.dev/embed-flutter.html?id=744bc09662686a31cd
 https://pub.dev/packages/progress_state_button
 
 ```
-progress-state-button: "^1.0.0"
+progress_state_button: "^1.0.0"
 ```
 
 ## Usage
