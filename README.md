@@ -9,13 +9,12 @@ A customizable progress button for Flutter
 Test with [DartPad](https://dartpad.dev/embed-flutter.html?id=744bc09662686a31cd6fc300739a3e14&split=80&theme=dark)
 
 
-
 ## Installation
 
 https://pub.dev/packages/progress_state_button
 
 ```
-progress_state_button: "^1.0.0"
+progress_state_button: "^1.0.2"
 ```
 
 ## Usage
@@ -86,6 +85,7 @@ radius = 16.0 - Button radius
 height = 53.0 - Button height
 circularProgressIndicator - CircularProgressIndicator widget, default is instating with current state color.
 progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
+progressIndicatorSize = 35.0 - size of progress indicator
 padding = EdgeInsets.zero - Padding of button
 ```
 

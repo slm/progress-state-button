@@ -15,6 +15,7 @@ class ProgressButton extends StatefulWidget {
   final radius;
   final height;
   final ProgressIndicator progressIndicator;
+  final progressIndicatorSize;
   final MainAxisAlignment progressIndicatorAligment;
   final EdgeInsets padding;
 
@@ -29,6 +30,7 @@ class ProgressButton extends StatefulWidget {
     this.maxWidth = 400.0,
     this.radius = 16.0,
     this.height = 53.0,
+    this.progressIndicatorSize = 35.0,
     this.progressIndicator,
     this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
     this.padding = EdgeInsets.zero,
@@ -58,6 +60,7 @@ class ProgressButton extends StatefulWidget {
     minWidth: 58.0,
     height: 53.0,
     radius: 100.0,
+    progressIndicatorSize: 35.0,
     double iconPadding: 4.0,
     TextStyle textStyle,
     CircularProgressIndicator progressIndicator,
@@ -101,6 +104,7 @@ class ProgressButton extends StatefulWidget {
       minWidth: minWidth,
       radius: radius,
       height: height,
+      progressIndicatorSize: progressIndicatorSize,
       progressIndicatorAligment: MainAxisAlignment.center,
       progressIndicator: progressIndicator,
     );
@@ -179,7 +183,15 @@ class _ProgressButtonState extends State<ProgressButton>
     if (widget.state == ButtonState.loading) {
       return Row(
         mainAxisAlignment: widget.progressIndicatorAligment,
-        children: <Widget>[progressIndicator, buttonChild, Container()],
+        children: <Widget>[
+          SizedBox(
+            child: progressIndicator,
+            width: widget.progressIndicatorSize,
+            height: widget.progressIndicatorSize,
+          ),
+          buttonChild,
+          Container()
+        ],
       );
     }
     return AnimatedOpacity(
