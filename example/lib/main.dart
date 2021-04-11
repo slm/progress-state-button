@@ -36,6 +36,7 @@ class ProgressButtonHomePage extends StatefulWidget {
 class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
   ButtonState stateOnlyText = ButtonState.idle;
   ButtonState stateTextWithIcon = ButtonState.idle;
+  ButtonState stateTextWithIconMinWidthState = ButtonState.idle;
 
   Widget buildCustomButton() {
     var progressTextButton = ProgressButton(
@@ -83,13 +84,39 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
           icon: Icon(Icons.cancel, color: Colors.white),
           color: Colors.red.shade300),
       ButtonState.success: IconedButton(
-          text: "Success",
+          text: "",
           icon: Icon(
             Icons.check_circle,
             color: Colors.white,
           ),
           color: Colors.green.shade400)
     }, onPressed: onPressedIconWithText, state: stateTextWithIcon);
+  }
+
+  Widget buildTextWithIconWithMinState() {
+    return ProgressButton.icon(
+      iconedButtons: {
+        ButtonState.idle: IconedButton(
+            text: "Send",
+            icon: Icon(Icons.send, color: Colors.white),
+            color: Colors.deepPurple.shade500),
+        ButtonState.loading:
+            IconedButton(text: "Loading", color: Colors.deepPurple.shade700),
+        ButtonState.fail: IconedButton(
+            text: "Failed",
+            icon: Icon(Icons.cancel, color: Colors.white),
+            color: Colors.red.shade300),
+        ButtonState.success: IconedButton(
+            icon: Icon(
+              Icons.check_circle,
+              color: Colors.white,
+            ),
+            color: Colors.green.shade400)
+      },
+      onPressed: onPressedIconWithMinWidthStateText,
+      state: stateTextWithIconMinWidthState,
+      minWidthStates: [ButtonState.loading, ButtonState.success],
+    );
   }
 
   @override
@@ -103,10 +130,14 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             buildCustomButton(),
-            Padding(
-              padding: EdgeInsets.all(32.0),
+            Container(
+              height: 32,
             ),
             buildTextWithIcon(),
+            Container(
+              height: 32,
+            ),
+            buildTextWithIconWithMinState(),
           ],
         ),
       ),
@@ -156,6 +187,33 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
     }
     setState(() {
       stateTextWithIcon = stateTextWithIcon;
+    });
+  }
+
+  void onPressedIconWithMinWidthStateText() {
+    switch (stateTextWithIcon) {
+      case ButtonState.idle:
+        stateTextWithIconMinWidthState = ButtonState.loading;
+        Future.delayed(Duration(seconds: 1), () {
+          setState(() {
+            stateTextWithIconMinWidthState = Random.secure().nextBool()
+                ? ButtonState.success
+                : ButtonState.fail;
+          });
+        });
+
+        break;
+      case ButtonState.loading:
+        break;
+      case ButtonState.success:
+        stateTextWithIconMinWidthState = ButtonState.idle;
+        break;
+      case ButtonState.fail:
+        stateTextWithIconMinWidthState = ButtonState.idle;
+        break;
+    }
+    setState(() {
+      stateTextWithIconMinWidthState = stateTextWithIconMinWidthState;
     });
   }
 }

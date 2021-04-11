@@ -74,10 +74,10 @@ void main() {
 }
 
 class TestApp extends StatelessWidget {
-  final ButtonState currentState;
-  final ButtonState nextState;
+  final ButtonState? currentState;
+  final ButtonState? nextState;
 
-  TestApp({Key key, this.currentState, this.nextState}) : super(key: key);
+  TestApp({Key? key, this.currentState, this.nextState}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -95,10 +95,10 @@ class TestApp extends StatelessWidget {
 }
 
 class ProgressButtonHomePage extends StatefulWidget {
-  final ButtonState currentState;
-  final ButtonState nextState;
+  final ButtonState? currentState;
+  final ButtonState? nextState;
 
-  ProgressButtonHomePage({Key key, this.currentState, this.nextState})
+  ProgressButtonHomePage({Key? key, this.currentState, this.nextState})
       : super(key: key);
 
   @override
@@ -107,12 +107,12 @@ class ProgressButtonHomePage extends StatefulWidget {
 }
 
 class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
-  ButtonState currentState;
-  ButtonState nextState;
+  ButtonState? currentState;
+  ButtonState? nextState;
 
   _ProgressButtonHomePageState({this.currentState, this.nextState}) : super();
 
-  ButtonState state;
+  ButtonState? state;
 
   @override
   void initState() {

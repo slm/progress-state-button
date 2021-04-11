@@ -7,34 +7,36 @@ enum ButtonState { idle, loading, success, fail }
 class ProgressButton extends StatefulWidget {
   final Map<ButtonState, Widget> stateWidgets;
   final Map<ButtonState, Color> stateColors;
-  final Function onPressed;
-  final Function onAnimationEnd;
-  final ButtonState state;
+  final Function? onPressed;
+  final Function? onAnimationEnd;
+  final ButtonState? state;
   final minWidth;
   final maxWidth;
   final radius;
   final height;
-  final ProgressIndicator progressIndicator;
+  final ProgressIndicator? progressIndicator;
   final progressIndicatorSize;
   final MainAxisAlignment progressIndicatorAligment;
   final EdgeInsets padding;
+  final List<ButtonState> minWidthStates;
 
-  ProgressButton({
-    Key key,
-    @required this.stateWidgets,
-    @required this.stateColors,
-    this.state = ButtonState.idle,
-    this.onPressed,
-    this.onAnimationEnd,
-    this.minWidth = 200.0,
-    this.maxWidth = 400.0,
-    this.radius = 16.0,
-    this.height = 53.0,
-    this.progressIndicatorSize = 35.0,
-    this.progressIndicator,
-    this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
-    this.padding = EdgeInsets.zero,
-  })  : assert(
+  ProgressButton(
+      {Key? key,
+      required this.stateWidgets,
+      required this.stateColors,
+      this.state = ButtonState.idle,
+      this.onPressed,
+      this.onAnimationEnd,
+      this.minWidth = 200.0,
+      this.maxWidth = 400.0,
+      this.radius = 16.0,
+      this.height = 53.0,
+      this.progressIndicatorSize = 35.0,
+      this.progressIndicator,
+      this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
+      this.padding = EdgeInsets.zero,
+      this.minWidthStates = const <ButtonState>[ButtonState.loading]})
+      : assert(
           stateWidgets != null &&
               stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
           'Must be non-null widgetds provided in map of stateWidgets. Missing keys => ${ButtonState.values.toSet().difference(stateWidgets.keys.toSet())}',
@@ -52,20 +54,21 @@ class ProgressButton extends StatefulWidget {
   }
 
   factory ProgressButton.icon({
-    @required Map<ButtonState, IconedButton> iconedButtons,
-    Function onPressed,
-    ButtonState state = ButtonState.idle,
-    Function animationEnd,
+    required Map<ButtonState, IconedButton> iconedButtons,
+    Function? onPressed,
+    ButtonState? state = ButtonState.idle,
+    Function? animationEnd,
     maxWidth: 170.0,
     minWidth: 58.0,
     height: 53.0,
     radius: 100.0,
     progressIndicatorSize: 35.0,
     double iconPadding: 4.0,
-    TextStyle textStyle,
-    CircularProgressIndicator progressIndicator,
-    MainAxisAlignment progressIndicatorAligment,
+    TextStyle? textStyle,
+    CircularProgressIndicator? progressIndicator,
+    MainAxisAlignment? progressIndicatorAligment,
     EdgeInsets padding = EdgeInsets.zero,
+    List<ButtonState> minWidthStates = const <ButtonState>[ButtonState.loading],
   }) {
     assert(
       iconedButtons != null &&
@@ -79,19 +82,19 @@ class ProgressButton extends StatefulWidget {
 
     Map<ButtonState, Widget> stateWidgets = {
       ButtonState.idle: buildChildWithIcon(
-          iconedButtons[ButtonState.idle], iconPadding, textStyle),
+          iconedButtons[ButtonState.idle]!, iconPadding, textStyle),
       ButtonState.loading: Column(),
       ButtonState.fail: buildChildWithIcon(
-          iconedButtons[ButtonState.fail], iconPadding, textStyle),
+          iconedButtons[ButtonState.fail]!, iconPadding, textStyle),
       ButtonState.success: buildChildWithIcon(
-          iconedButtons[ButtonState.success], iconPadding, textStyle)
+          iconedButtons[ButtonState.success]!, iconPadding, textStyle)
     };
 
     Map<ButtonState, Color> stateColors = {
-      ButtonState.idle: iconedButtons[ButtonState.idle].color,
-      ButtonState.loading: iconedButtons[ButtonState.loading].color,
-      ButtonState.fail: iconedButtons[ButtonState.fail].color,
-      ButtonState.success: iconedButtons[ButtonState.success].color,
+      ButtonState.idle: iconedButtons[ButtonState.idle]!.color,
+      ButtonState.loading: iconedButtons[ButtonState.loading]!.color,
+      ButtonState.fail: iconedButtons[ButtonState.fail]!.color,
+      ButtonState.success: iconedButtons[ButtonState.success]!.color,
     };
 
     return ProgressButton(
@@ -107,40 +110,41 @@ class ProgressButton extends StatefulWidget {
       progressIndicatorSize: progressIndicatorSize,
       progressIndicatorAligment: MainAxisAlignment.center,
       progressIndicator: progressIndicator,
+      minWidthStates: minWidthStates,
     );
   }
 }
 
 class _ProgressButtonState extends State<ProgressButton>
     with TickerProviderStateMixin {
-  AnimationController colorAnimationController;
-  Animation<Color> colorAnimation;
-  double width;
+  AnimationController? colorAnimationController;
+  Animation<Color?>? colorAnimation;
+  double? width;
   Duration animationDuration = Duration(milliseconds: 500);
-  Widget progressIndicator;
+  Widget? progressIndicator;
 
-  void startAnimations(ButtonState oldState, ButtonState newState) {
-    Color begin = widget.stateColors[oldState];
-    Color end = widget.stateColors[newState];
-    if (newState == ButtonState.loading) {
+  void startAnimations(ButtonState? oldState, ButtonState? newState) {
+    Color? begin = widget.stateColors[oldState!];
+    Color? end = widget.stateColors[newState!];
+    if (widget.minWidthStates.contains(newState)) {
       width = widget.minWidth;
     } else {
       width = widget.maxWidth;
     }
     colorAnimation = ColorTween(begin: begin, end: end).animate(CurvedAnimation(
-      parent: colorAnimationController,
+      parent: colorAnimationController!,
       curve: Interval(
         0,
         1,
         curve: Curves.easeIn,
       ),
     ));
-    colorAnimationController.forward();
+    colorAnimationController!.forward();
   }
 
-  Color get backgroundColor => colorAnimation == null
-      ? widget.stateColors[widget.state]
-      : colorAnimation.value ?? widget.stateColors[widget.state];
+  Color? get backgroundColor => colorAnimation == null
+      ? widget.stateColors[widget.state!]
+      : colorAnimation!.value ?? widget.stateColors[widget.state!];
 
   @override
   void initState() {
@@ -150,21 +154,21 @@ class _ProgressButtonState extends State<ProgressButton>
 
     colorAnimationController =
         AnimationController(duration: animationDuration, vsync: this);
-    colorAnimationController.addStatusListener((status) {
+    colorAnimationController!.addStatusListener((status) {
       if (widget.onAnimationEnd != null) {
-        widget.onAnimationEnd(status, widget.state);
+        widget.onAnimationEnd!(status, widget.state);
       }
     });
 
     progressIndicator = widget.progressIndicator ??
         CircularProgressIndicator(
-            backgroundColor: widget.stateColors[widget.state],
+            backgroundColor: widget.stateColors[widget.state!],
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white));
   }
 
   @override
   void dispose() {
-    colorAnimationController.dispose();
+    colorAnimationController!.dispose();
     super.dispose();
   }
 
@@ -179,7 +183,7 @@ class _ProgressButtonState extends State<ProgressButton>
   }
 
   Widget getButtonChild(bool visibility) {
-    Widget buttonChild = widget.stateWidgets[widget.state];
+    Widget? buttonChild = widget.stateWidgets[widget.state!];
     if (widget.state == ButtonState.loading) {
       return Row(
         mainAxisAlignment: widget.progressIndicatorAligment,
@@ -189,7 +193,7 @@ class _ProgressButtonState extends State<ProgressButton>
             width: widget.progressIndicatorSize,
             height: widget.progressIndicatorSize,
           ),
-          buttonChild,
+          buttonChild ?? Container(),
           Container()
         ],
       );
@@ -203,21 +207,21 @@ class _ProgressButtonState extends State<ProgressButton>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: colorAnimationController,
+      animation: colorAnimationController!,
       builder: (context, child) {
         return AnimatedContainer(
             width: width,
             height: widget.height,
             duration: animationDuration,
-            child: RaisedButton(
+            child: MaterialButton(
               padding: widget.padding,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(widget.radius),
                   side: BorderSide(color: Colors.transparent, width: 0)),
               color: backgroundColor,
-              onPressed: widget.onPressed,
+              onPressed: widget.onPressed as void Function()?,
               child: getButtonChild(
-                  colorAnimation == null ? true : colorAnimation.isCompleted),
+                  colorAnimation == null ? true : colorAnimation!.isCompleted),
             ));
       },
     );
