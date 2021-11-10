@@ -11,3 +11,7 @@
 * add minWidthStates, can define only iconed states
 * migrate null safety
 
+## [1.0.4]
+* change number parameters type to double #11
+* fix typo #9
+* expose transition animation duration #6

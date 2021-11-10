@@ -10,15 +10,16 @@ class ProgressButton extends StatefulWidget {
   final Function? onPressed;
   final Function? onAnimationEnd;
   final ButtonState? state;
-  final minWidth;
-  final maxWidth;
-  final radius;
-  final height;
+  final double minWidth;
+  final double maxWidth;
+  final double radius;
+  final double height;
   final ProgressIndicator? progressIndicator;
-  final progressIndicatorSize;
-  final MainAxisAlignment progressIndicatorAligment;
+  final double progressIndicatorSize;
+  final MainAxisAlignment progressIndicatorAlignment;
   final EdgeInsets padding;
   final List<ButtonState> minWidthStates;
+  final Duration animationDuration;
 
   ProgressButton(
       {Key? key,
@@ -33,9 +34,10 @@ class ProgressButton extends StatefulWidget {
       this.height = 53.0,
       this.progressIndicatorSize = 35.0,
       this.progressIndicator,
-      this.progressIndicatorAligment = MainAxisAlignment.spaceBetween,
+      this.progressIndicatorAlignment = MainAxisAlignment.spaceBetween,
       this.padding = EdgeInsets.zero,
-      this.minWidthStates = const <ButtonState>[ButtonState.loading]})
+      this.minWidthStates = const <ButtonState>[ButtonState.loading],
+      this.animationDuration = const Duration(milliseconds: 500)})
       : assert(
           stateWidgets != null &&
               stateWidgets.keys.toSet().containsAll(ButtonState.values.toSet()),
@@ -66,7 +68,7 @@ class ProgressButton extends StatefulWidget {
     double iconPadding: 4.0,
     TextStyle? textStyle,
     CircularProgressIndicator? progressIndicator,
-    MainAxisAlignment? progressIndicatorAligment,
+    MainAxisAlignment? progressIndicatorAlignment,
     EdgeInsets padding = EdgeInsets.zero,
     List<ButtonState> minWidthStates = const <ButtonState>[ButtonState.loading],
   }) {
@@ -108,7 +110,7 @@ class ProgressButton extends StatefulWidget {
       radius: radius,
       height: height,
       progressIndicatorSize: progressIndicatorSize,
-      progressIndicatorAligment: MainAxisAlignment.center,
+      progressIndicatorAlignment: MainAxisAlignment.center,
       progressIndicator: progressIndicator,
       minWidthStates: minWidthStates,
     );
@@ -120,7 +122,6 @@ class _ProgressButtonState extends State<ProgressButton>
   AnimationController? colorAnimationController;
   Animation<Color?>? colorAnimation;
   double? width;
-  Duration animationDuration = Duration(milliseconds: 500);
   Widget? progressIndicator;
 
   void startAnimations(ButtonState? oldState, ButtonState? newState) {
@@ -153,7 +154,7 @@ class _ProgressButtonState extends State<ProgressButton>
     width = widget.maxWidth;
 
     colorAnimationController =
-        AnimationController(duration: animationDuration, vsync: this);
+        AnimationController(duration: widget.animationDuration, vsync: this);
     colorAnimationController!.addStatusListener((status) {
       if (widget.onAnimationEnd != null) {
         widget.onAnimationEnd!(status, widget.state);
@@ -186,7 +187,7 @@ class _ProgressButtonState extends State<ProgressButton>
     Widget? buttonChild = widget.stateWidgets[widget.state!];
     if (widget.state == ButtonState.loading) {
       return Row(
-        mainAxisAlignment: widget.progressIndicatorAligment,
+        mainAxisAlignment: widget.progressIndicatorAlignment,
         children: <Widget>[
           SizedBox(
             child: progressIndicator,
@@ -212,7 +213,7 @@ class _ProgressButtonState extends State<ProgressButton>
         return AnimatedContainer(
             width: width,
             height: widget.height,
-            duration: animationDuration,
+            duration: widget.animationDuration,
             child: MaterialButton(
               padding: widget.padding,
               shape: RoundedRectangleBorder(

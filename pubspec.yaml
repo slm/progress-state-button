@@ -1,6 +1,6 @@
 name: progress_state_button
 description: A customizable progress button widget for Flutter Android, IOS and Web.
-version: 1.0.3
+version: 1.0.4
 homepage: https://github.com/slm/progress-state-button
 issue_tracker: https://github.com/slm/progress-state-button/issues
 

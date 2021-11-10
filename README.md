@@ -14,7 +14,7 @@ Test with [DartPad](https://dartpad.dev/embed-flutter.html?id=744bc09662686a31cd
 https://pub.dev/packages/progress_state_button
 
 ```
-progress_state_button: "^1.0.3"
+progress_state_button: "^1.0.4"
 ```
 
 ## Usage
@@ -84,10 +84,11 @@ maxWidth = 400.0 - failed,success,idle states width
 radius = 16.0 - Button radius
 height = 53.0 - Button height
 circularProgressIndicator - CircularProgressIndicator widget, default is instating with current state color.
-progressIndicatorAligment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
+progressIndicatorAlignment = MainAxisAlignment.spaceBetween` - ProgressIndicator aligment
 progressIndicatorSize = 35.0 - size of progress indicator
 padding = EdgeInsets.zero - Padding of button
 minWidthStates = List of min width states, loading is the default. If you want to make small only icon states define them on this.
+animationDuration = Transition animation duration.
 ```
 
 #### ProgressButton.icon() specific constructors

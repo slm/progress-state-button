@@ -35,6 +35,7 @@ class ProgressButtonHomePage extends StatefulWidget {
 
 class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
   ButtonState stateOnlyText = ButtonState.idle;
+  ButtonState stateOnlyCustomIndicatorText = ButtonState.idle;
   ButtonState stateTextWithIcon = ButtonState.idle;
   ButtonState stateTextWithIconMinWidthState = ButtonState.idle;
 
@@ -66,6 +67,40 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
       },
       onPressed: onPressedCustomButton,
       state: stateOnlyText,
+      padding: EdgeInsets.all(8.0),
+    );
+    return progressTextButton;
+  }
+
+  Widget buildCustomProgressIndicatorButton() {
+    var progressTextButton = ProgressButton(
+      stateWidgets: {
+        ButtonState.idle: Text(
+          "Idle",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.loading: Text(
+          "Loading",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.fail: Text(
+          "Fail",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        ButtonState.success: Text(
+          "Success",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+        )
+      },
+      progressIndicator:  CircularProgressIndicator( backgroundColor: Colors.white, valueColor: AlwaysStoppedAnimation(Colors.red), strokeWidth: 1, ),
+      stateColors: {
+        ButtonState.idle: Colors.grey.shade400,
+        ButtonState.loading: Colors.blue.shade300,
+        ButtonState.fail: Colors.red.shade300,
+        ButtonState.success: Colors.green.shade400,
+      },
+      onPressed: onPressedCustomIndicatorButton,
+      state: stateOnlyCustomIndicatorText,
       padding: EdgeInsets.all(8.0),
     );
     return progressTextButton;
@@ -138,6 +173,8 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
               height: 32,
             ),
             buildTextWithIconWithMinState(),
+            Container(height: 32,),
+            buildCustomProgressIndicatorButton()
           ],
         ),
       ),
@@ -163,7 +200,27 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
     });
   }
 
-  void onPressedIconWithText() {
+  void onPressedCustomIndicatorButton() {
+    setState(() {
+      switch (stateOnlyCustomIndicatorText) {
+        case ButtonState.idle:
+          stateOnlyCustomIndicatorText = ButtonState.loading;
+          break;
+        case ButtonState.loading:
+          stateOnlyCustomIndicatorText = ButtonState.fail;
+          break;
+        case ButtonState.success:
+          stateOnlyCustomIndicatorText = ButtonState.idle;
+          break;
+        case ButtonState.fail:
+          stateOnlyCustomIndicatorText = ButtonState.success;
+          break;
+      }
+    });
+  }
+
+
+  void onPressedIconWithText() async {
     switch (stateTextWithIcon) {
       case ButtonState.idle:
         stateTextWithIcon = ButtonState.loading;
@@ -191,7 +248,7 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
   }
 
   void onPressedIconWithMinWidthStateText() {
-    switch (stateTextWithIcon) {
+    switch (stateTextWithIconMinWidthState) {
       case ButtonState.idle:
         stateTextWithIconMinWidthState = ButtonState.loading;
         Future.delayed(Duration(seconds: 1), () {
