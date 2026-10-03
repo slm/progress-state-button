@@ -18,6 +18,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              shadowColor: Colors.red,
+              padding: const EdgeInsets.all(20.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+              elevation: 10.0,
+              textStyle: const TextStyle(fontWeight: FontWeight.bold),
+              backgroundColor: Colors.green),
+        ),
       ),
       home: ProgressButtonHomePage(title: 'Progress Button'),
     );
@@ -92,7 +103,11 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         )
       },
-      progressIndicator:  CircularProgressIndicator( backgroundColor: Colors.white, valueColor: AlwaysStoppedAnimation(Colors.red), strokeWidth: 1, ),
+      progressIndicator: CircularProgressIndicator(
+        backgroundColor: Colors.white,
+        valueColor: AlwaysStoppedAnimation(Colors.red),
+        strokeWidth: 1,
+      ),
       stateColors: {
         ButtonState.idle: Colors.grey.shade400,
         ButtonState.loading: Colors.blue.shade300,
@@ -173,7 +188,9 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
               height: 32,
             ),
             buildTextWithIconWithMinState(),
-            Container(height: 32,),
+            Container(
+              height: 32,
+            ),
             buildCustomProgressIndicatorButton()
           ],
         ),
@@ -218,7 +235,6 @@ class _ProgressButtonHomePageState extends State<ProgressButtonHomePage> {
       }
     });
   }
-
 
   void onPressedIconWithText() async {
     switch (stateTextWithIcon) {
